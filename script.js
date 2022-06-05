@@ -4,9 +4,9 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var newPassword = document.querySelector("#password");
+  var passwordText = document.querySelector("#password");
 
-  newPassword.value = password;
+  passwordText.value = password;
 
 }
 
@@ -34,7 +34,8 @@ generateBtn.addEventListener("click", writePassword);
 
 //Prompt for how many characters
 function generatePassword() {
-userin = window.prompt("How many characters would you like for your password? Please enter a number between 8 and 128.")
+userin = parseInt(prompt("How many characters would you like for your password? Please enter a number between 8 and 128."))
+
 
 //If user didn't place a value
 
@@ -135,16 +136,18 @@ else if (pickNumbers && pickLower && pickUpper) {
 var password = []
 
 for (var i = 0; i < choice; i++) {
-  var pickChoices = choice[Math.floor(Math.random() * userin.length)];
+  var pickChoices = choice[Math.floor(Math.random() * userin)];
   password.push(pickChoices)
 }
 
-var newPassword = password.join("");
-    UserInput(newPassword);
-    return newPassword;
+var ps = password.join("");
+UserInput(ps);
+return ps
 
-function UserInput(newPassword) {
-   document.getElementById("password").textContent = newPassword;
+function UserInput(ps) {
+  ps = generatePassword();
+  document.getElementById("password").placeholder = ps;
+  document.getElementById("password").textContent = ps;
 }
 
 }
